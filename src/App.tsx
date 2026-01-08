@@ -1,0 +1,69 @@
+import { useEffect, useState } from 'react'
+import { AnimatePresence } from 'framer-motion'
+import { Loader } from './components/Loader'
+import { Navigation } from './components/Navigation'
+import { ContactModal } from './components/ContactModal'
+import { Hero } from './components/Hero'
+import { TrustStrip } from './components/TrustStrip'
+import { AboutVision } from './components/AboutVision'
+import { Services } from './components/Services'
+import { WhyChooseUs } from './components/WhyChooseUs'
+import { ProjectsPreview } from './components/ProjectsPreview'
+import { CTASection } from './components/CTASection'
+import { Footer } from './components/Footer'
+export function App() {
+  const [isLoading, setIsLoading] = useState(true)
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false)
+  useEffect(() => {
+    // Simulate loading time
+    const timer = setTimeout(() => {
+      setIsLoading(false)
+    }, 2500)
+    return () => clearTimeout(timer)
+  }, [])
+  // Smooth scroll behavior for anchor links
+  useEffect(() => {
+    document.documentElement.style.scrollBehavior = 'smooth'
+    return () => {
+      document.documentElement.style.scrollBehavior = 'auto'
+    }
+  }, [])
+  return (
+    <>
+      <AnimatePresence mode="wait">
+        {isLoading && <Loader key="loader" />}
+      </AnimatePresence>
+
+      {!isLoading && (
+        <>
+          <Navigation onContactClick={() => setIsContactModalOpen(true)} />
+          <ContactModal
+            isOpen={isContactModalOpen}
+            onClose={() => setIsContactModalOpen(false)}
+          />
+
+          <div className="min-h-screen bg-white font-sans text-[#1A1F2E]">
+            <div id="home">
+              <Hero onContactClick={() => setIsContactModalOpen(true)} />
+            </div>
+            <TrustStrip />
+            <div id="about">
+              <AboutVision />
+            </div>
+            <div id="services">
+              <Services />
+            </div>
+            <WhyChooseUs />
+            <div id="projects">
+              <ProjectsPreview />
+            </div>
+            <div id="contact">
+              <CTASection onContactClick={() => setIsContactModalOpen(true)} />
+            </div>
+            <Footer />
+          </div>
+        </>
+      )}
+    </>
+  )
+}
