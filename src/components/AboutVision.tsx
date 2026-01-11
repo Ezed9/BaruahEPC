@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion'
 import { Section } from './ui/Section'
-import { CheckCircle2 } from 'lucide-react'
 import targetGoal from '../assets/target-goal.jpg'
 import profilePhoto from '../assets/profile-photo.png'
 
@@ -31,64 +30,89 @@ export function AboutVision() {
                         </span>
                     </div>
 
-                    <div className="flex flex-col md:flex-row gap-6 mb-8 items-start">
-                        <div className="flex-1">
-                            <h2 className="text-4xl md:text-5xl font-bold text-[#0A1628] mb-6 leading-tight">
-                                Our mission is to turn <br />
-                                <span className="text-[#0EA5E9]">
-                                    ideas into trusted structures.
-                                </span>
-                            </h2>
+                    <h2 className="text-4xl md:text-5xl font-bold text-[#0A1628] mb-6 leading-tight">
+                        Our mission is to turn <br />
+                        <span className="text-[#0EA5E9]">
+                            ideas into trusted structures.
+                        </span>
+                    </h2>
 
-                            <p className="text-lg text-gray-600 mb-6 leading-relaxed">
-                                At Baruah EPC & Group, our mission is to make every construction
-                                experience seamless, safe, and tailored to your needs. We believe
-                                in delivering high-quality, reliable services that bring joy and
-                                satisfaction to our clients, all from the comfort of your home.
-                                With a focus on safety, quality, and client-centric solutions, we
-                                aim to transform your vision into reality with a happy and secure
-                                outcome.
-                            </p>
-                        </div>
-                        <div className="flex-shrink-0">
-                            <img
-                                src={profilePhoto}
-                                alt="Founder"
-                                className="w-32 h-32 md:w-40 md:h-40 object-cover rounded-lg border-4 border-white shadow-lg rotate-3 hover:rotate-0 transition-transform duration-300"
-                            />
-                        </div>
-                    </div>
+                    <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+                        At Baruah EPC & Group, our mission is to make every construction
+                        experience seamless, safe, and tailored to your needs. We believe
+                        in delivering high-quality, reliable services that bring joy and
+                        satisfaction to our clients, all from the comfort of your home.
+                        With a focus on safety, quality, and client-centric solutions, we
+                        aim to transform your vision into reality with a happy and secure
+                        outcome.
+                    </p>
 
-                    <div className="space-y-4">
-                        {[
-                            'Pan-India execution capabilities',
-                            'Technology-driven project management',
-                            'Sustainable construction practices',
-                            'Zero-compromise safety standards',
-                        ].map((item, idx) => (
-                            <motion.div
-                                key={idx}
-                                initial={{
-                                    opacity: 0,
-                                    x: -20,
-                                }}
-                                whileInView={{
-                                    opacity: 1,
-                                    x: 0,
-                                }}
-                                viewport={{
-                                    once: true,
-                                }}
-                                transition={{
-                                    delay: 0.2 + idx * 0.1,
-                                }}
-                                className="flex items-center space-x-3"
-                            >
-                                <CheckCircle2 className="w-5 h-5 text-[#FDB913]" />
-                                <span className="text-[#1A1F2E] font-medium">{item}</span>
-                            </motion.div>
-                        ))}
-                    </div>
+                    {/* Founder Spotlight Section */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                        className="relative bg-gradient-to-br from-[#0A1628] via-[#0f2847] to-[#0A1628] rounded-2xl p-6 md:p-10 mb-8 overflow-hidden"
+                    >
+                        {/* Decorative elements */}
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-[#FDB913]/10 rounded-full blur-3xl" />
+                        <div className="absolute bottom-0 left-0 w-24 h-24 bg-[#0EA5E9]/10 rounded-full blur-2xl" />
+
+                        <div className="relative z-10 flex flex-col md:flex-row items-center gap-6 md:gap-10">
+                            {/* Profile Photo */}
+                            <div className="relative flex-shrink-0">
+                                {/* Animated border ring */}
+                                <motion.div
+                                    className="absolute inset-0 rounded-full bg-gradient-to-r from-[#FDB913] via-[#0EA5E9] to-[#FDB913]"
+                                    style={{ padding: '4px' }}
+                                    animate={{ rotate: 360 }}
+                                    transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
+                                >
+                                    <div className="w-full h-full rounded-full bg-[#0A1628]" />
+                                </motion.div>
+
+                                {/* Photo container */}
+                                <motion.div
+                                    whileHover={{ scale: 1.05 }}
+                                    transition={{ type: 'spring', stiffness: 300 }}
+                                    className="relative w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden border-4 border-[#0A1628] shadow-2xl"
+                                >
+                                    <img
+                                        src={profilePhoto}
+                                        alt="Founder"
+                                        className="w-full h-full object-cover object-top"
+                                    />
+                                    {/* Subtle overlay for cohesion */}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628]/30 to-transparent" />
+                                </motion.div>
+
+                                {/* Glow effect */}
+                                <div className="absolute -inset-2 bg-[#FDB913]/20 rounded-full blur-xl -z-10" />
+                            </div>
+
+                            {/* Founder Info */}
+                            <div className="flex-1 text-center md:text-left">
+                                <motion.div
+                                    initial={{ opacity: 0, x: -20 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.4 }}
+                                >
+                                    <h3 className="text-2xl md:text-3xl font-bold text-white mb-1">
+                                        Tanmoy Baruah
+                                    </h3>
+                                    <p className="text-[#FDB913] font-medium tracking-wide uppercase text-sm mb-4">
+                                        Founder & Managing Director
+                                    </p>
+                                    <blockquote className="text-gray-300 italic text-base md:text-lg leading-relaxed">
+                                        "Excellence is not just about what we build, but how we build it —
+                                        with integrity, precision, and an unwavering commitment to our clients' dreams."
+                                    </blockquote>
+                                </motion.div>
+                            </div>
+                        </div>
+                    </motion.div>
                 </motion.div>
 
                 <motion.div
