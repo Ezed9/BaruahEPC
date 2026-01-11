@@ -1,4 +1,3 @@
-
 import {
     Facebook,
     Twitter,
@@ -8,6 +7,7 @@ import {
     Mail,
     Phone,
 } from 'lucide-react'
+import logo from '../assets/logo.png'
 export function Footer() {
     return (
         <footer className="bg-[#050B14] text-white pt-20 pb-10 border-t border-gray-900">
@@ -16,16 +16,11 @@ export function Footer() {
                     {/* Brand Column */}
                     <div>
                         <div className="flex items-center space-x-2 mb-6">
-                            <span className="h-8 w-8 bg-[#FDB913] rounded-sm flex items-center justify-center font-bold text-black">
-                                B
-                            </span>
-                            <span className="text-xl font-bold tracking-wide">
-                                Baruah EPC
-                            </span>
+                            <img src={logo} alt="Baruah EPC" className="h-12 w-auto" />
                         </div>
                         <p className="text-gray-400 mb-6 leading-relaxed">
-                            Building the infrastructure of tomorrow with precision,
-                            innovation, and unwavering reliability.
+                            Building the infrastructure of tomorrow with precision, innovation,
+                            and unwavering reliability.
                         </p>
                         <div className="flex space-x-4">
                             {[Facebook, Twitter, Linkedin, Instagram].map((Icon, i) => (

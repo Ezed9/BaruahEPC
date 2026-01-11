@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { Button } from './ui/Button'
 import { cn } from '../lib/utils'
+import logo from '../assets/logo.png'
 
 const navItems = [
     {
@@ -68,6 +69,10 @@ export function Navigation({ onContactClick }: NavigationProps) {
             >
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between h-20">
+                        import logo from '../assets/logo.png'
+                        // ... (imports)
+
+                        // ... (inside Navigation component loop)
                         {/* Logo */}
                         <motion.div
                             className="flex items-center space-x-2 cursor-pointer"
@@ -76,12 +81,7 @@ export function Navigation({ onContactClick }: NavigationProps) {
                                 scale: 1.05,
                             }}
                         >
-                            <span className="h-10 w-10 bg-[#FDB913] rounded-sm flex items-center justify-center font-bold text-black text-xl">
-                                B
-                            </span>
-                            <span className="text-white font-bold text-xl hidden sm:block">
-                                Baruah EPC
-                            </span>
+                            <img src={logo} alt="Baruah EPC" className="h-16 w-auto" />
                         </motion.div>
 
                         {/* Desktop Navigation */}

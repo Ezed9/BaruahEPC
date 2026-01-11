@@ -29,7 +29,7 @@ export function Hero({ onContactClick }: HeroProps) {
                         duration: 1.5,
                         ease: 'easeOut',
                     }}
-                    src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop"
+                    src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2560&auto=format&fit=crop"
                     alt="Construction Site"
                     className="w-full h-full object-cover opacity-40"
                 />
