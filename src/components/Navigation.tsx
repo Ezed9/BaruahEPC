@@ -23,7 +23,7 @@ const navItems = [
         href: '#projects',
     },
     {
-        label: 'Contact',
+        label: 'Consultation',
         href: '#contact',
     },
 ]
@@ -69,13 +69,9 @@ export function Navigation({ onContactClick }: NavigationProps) {
             >
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between h-20">
-                        import logo from '../assets/logo.png'
-                        // ... (imports)
-
-                        // ... (inside Navigation component loop)
                         {/* Logo */}
                         <motion.div
-                            className="flex items-center space-x-2 cursor-pointer"
+                            className="flex items-center space-x-2 cursor-pointer mr-12"
                             onClick={() => scrollToSection('#home')}
                             whileHover={{
                                 scale: 1.05,
@@ -85,7 +81,7 @@ export function Navigation({ onContactClick }: NavigationProps) {
                         </motion.div>
 
                         {/* Desktop Navigation */}
-                        <div className="hidden md:flex items-center space-x-8">
+                        <div className="hidden md:flex items-center space-x-8 flex-1 justify-end">
                             {navItems.map((item) => (
                                 <button
                                     key={item.label}

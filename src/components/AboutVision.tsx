@@ -1,7 +1,9 @@
-
 import { motion } from 'framer-motion'
 import { Section } from './ui/Section'
 import { CheckCircle2 } from 'lucide-react'
+import targetGoal from '../assets/target-goal.jpg'
+import profilePhoto from '../assets/profile-photo.png'
+
 export function AboutVision() {
     return (
         <Section background="light">
@@ -29,19 +31,33 @@ export function AboutVision() {
                         </span>
                     </div>
 
-                    <h2 className="text-4xl md:text-5xl font-bold text-[#0A1628] mb-6 leading-tight">
-                        Our mission is to turn <br />
-                        <span className="text-[#0EA5E9]">ideas into trusted structures.</span>
-                    </h2>
+                    <div className="flex flex-col md:flex-row gap-6 mb-8 items-start">
+                        <div className="flex-1">
+                            <h2 className="text-4xl md:text-5xl font-bold text-[#0A1628] mb-6 leading-tight">
+                                Our mission is to turn <br />
+                                <span className="text-[#0EA5E9]">
+                                    ideas into trusted structures.
+                                </span>
+                            </h2>
 
-                    <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                        At Baruah EPC & Group, our mission is to make every construction
-                        experience seamless, safe, and tailored to your needs. We focus on
-                        delivering high-quality, reliable services that bring satisfaction
-                        and peace of mind — from the comfort of your home. With safety,
-                        quality, and client-first solutions at the core, we transform your
-                        vision into a secure and happy outcome.
-                    </p>
+                            <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                                At Baruah EPC & Group, our mission is to make every construction
+                                experience seamless, safe, and tailored to your needs. We believe
+                                in delivering high-quality, reliable services that bring joy and
+                                satisfaction to our clients, all from the comfort of your home.
+                                With a focus on safety, quality, and client-centric solutions, we
+                                aim to transform your vision into reality with a happy and secure
+                                outcome.
+                            </p>
+                        </div>
+                        <div className="flex-shrink-0">
+                            <img
+                                src={profilePhoto}
+                                alt="Founder"
+                                className="w-32 h-32 md:w-40 md:h-40 object-cover rounded-lg border-4 border-white shadow-lg rotate-3 hover:rotate-0 transition-transform duration-300"
+                            />
+                        </div>
+                    </div>
 
                     <div className="space-y-4">
                         {[
@@ -94,8 +110,8 @@ export function AboutVision() {
                 >
                     <div className="relative h-[500px] w-full rounded-lg overflow-hidden shadow-2xl">
                         <img
-                            src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2089&auto=format&fit=crop"
-                            alt="Modern Architecture"
+                            src={targetGoal}
+                            alt="Target Goal"
                             className="w-full h-full object-cover"
                         />
                         <div className="absolute inset-0 bg-[#0A1628]/20 mix-blend-multiply" />
@@ -124,8 +140,8 @@ export function AboutVision() {
                             </p>
                             <p className="text-3xl font-bold text-[#0A1628]">100+</p>
                             <p className="text-sm text-gray-600 mt-2">
-                                Satisfied clients anchored in trust and enduring relationships –
-                                FY 2026-2027
+                                Satisfied clients anchored in trust and enduring relationships —
+                                FY 2026–2027
                             </p>
                         </motion.div>
                     </div>

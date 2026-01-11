@@ -41,6 +41,11 @@ export function CTASection({ onContactClick }: CTASectionProps) {
                         <h2 className="text-4xl md:text-5xl font-bold text-[#0A1628] mb-6 leading-tight">
                             Ready to Build the Future?
                         </h2>
+                        <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto opacity-90">
+                            Ready to start your project? Contact us at{' '}
+                            <span className="font-bold">8811090483</span> or{' '}
+                            <span className="font-bold">baruahepc@gmail.com</span>
+                        </p>
                         <p className="text-xl text-[#0A1628]/80 font-medium">
                             Let's discuss your next infrastructure project. We bring the
                             expertise, you bring the vision.

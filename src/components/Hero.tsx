@@ -125,9 +125,8 @@ export function Hero({ onContactClick }: HeroProps) {
                             duration: 0.8,
                         }}
                     >
-                        Engineering excellence meets startup agility. We deliver large-scale
-                        EPC solutions with precision, innovation, and unwavering reliability
-                        across India.
+                        We deliver personalised construction, procurement, and design services to bring your dream project to life.
+
                     </motion.p>
 
                     <motion.div
