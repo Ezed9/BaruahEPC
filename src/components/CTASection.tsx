@@ -7,7 +7,7 @@ interface CTASectionProps {
 }
 export function CTASection({ onContactClick }: CTASectionProps) {
     const handlePhoneClick = () => {
-        window.location.href = 'tel:+919876543210'
+        window.location.href = 'tel:8811090483'
     }
     return (
         <section className="py-24 bg-[#FDB913] relative overflow-hidden">
@@ -76,7 +76,7 @@ export function CTASection({ onContactClick }: CTASectionProps) {
                             leftIcon={<Phone className="w-5 h-5" />}
                             onClick={handlePhoneClick}
                         >
-                            +91 98765 43210
+                            8811090483
                         </Button>
                     </motion.div>
                 </div>

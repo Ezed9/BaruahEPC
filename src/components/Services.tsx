@@ -1,136 +1,85 @@
 
 import { motion } from 'framer-motion'
 import { Section } from './ui/Section'
-import { Ruler, Truck, HardHat, ArrowRight } from 'lucide-react'
-const services = [
+import { CheckCircle2 } from 'lucide-react'
+
+const serviceCategories = [
     {
-        icon: Ruler,
-        title: 'Engineering',
-        description:
-            'Precision structural design, architectural planning, and feasibility studies using advanced BIM technology.',
-        color: 'bg-blue-500',
+        title: 'Construction Services',
+        items: [
+            'Interior Construction',
+            'Plumbing',
+            'Electrical Work',
+            'General Contracting',
+        ],
     },
     {
-        icon: Truck,
-        title: 'Procurement',
-        description:
-            'Strategic sourcing of high-grade materials, supply chain management, and vendor coordination for cost efficiency.',
-        color: 'bg-[#FDB913]',
+        title: 'Procurement Services',
+        items: ['Material Sourcing', 'Fixtures', 'Fittings'],
     },
     {
-        icon: HardHat,
-        title: 'Construction',
-        description:
-            'End-to-end execution of infrastructure projects, from earthworks to finishing, with strict quality control.',
-        color: 'bg-orange-500',
+        title: 'Design and Consultancy',
+        items: ['Architectural Design', 'Interior Design', 'Planning'],
+    },
+    {
+        title: 'Labor and Workforce',
+        items: ['Skilled Labor', 'Project Management'],
+    },
+    {
+        title: 'Custom Solutions',
+        items: ['Unique Client Needs', 'Special Requests'],
     },
 ]
-export function Services() {
+
+interface ServicesProps {
+    onServiceClick: () => void
+}
+
+export function Services({ onServiceClick }: ServicesProps) {
     return (
-        <Section background="navy" id="services">
-            <div className="text-center mb-16 max-w-3xl mx-auto">
+        <Section background="light" id="services">
+            <div className="text-center mb-16">
                 <motion.span
-                    initial={{
-                        opacity: 0,
-                        y: 20,
-                    }}
-                    whileInView={{
-                        opacity: 1,
-                        y: 0,
-                    }}
-                    viewport={{
-                        once: true,
-                    }}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
                     className="text-[#FDB913] font-bold tracking-widest uppercase text-sm block mb-4"
                 >
-                    Core Capabilities
+                    Our Offerings
                 </motion.span>
                 <motion.h2
-                    initial={{
-                        opacity: 0,
-                        y: 20,
-                    }}
-                    whileInView={{
-                        opacity: 1,
-                        y: 0,
-                    }}
-                    viewport={{
-                        once: true,
-                    }}
-                    transition={{
-                        delay: 0.1,
-                    }}
-                    className="text-4xl md:text-5xl font-bold text-white mb-6"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.1 }}
+                    className="text-4xl md:text-5xl font-bold text-[#0A1628] mb-6"
                 >
-                    Comprehensive EPC Solutions
+                    Specialized Services
                 </motion.h2>
-                <motion.p
-                    initial={{
-                        opacity: 0,
-                        y: 20,
-                    }}
-                    whileInView={{
-                        opacity: 1,
-                        y: 0,
-                    }}
-                    viewport={{
-                        once: true,
-                    }}
-                    transition={{
-                        delay: 0.2,
-                    }}
-                    className="text-gray-400 text-lg"
-                >
-                    We integrate every stage of the project lifecycle to deliver seamless,
-                    turnkey infrastructure solutions.
-                </motion.p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {services.map((service, index) => (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {serviceCategories.map((category, index) => (
                     <motion.div
                         key={index}
-                        initial={{
-                            opacity: 0,
-                            y: 30,
-                        }}
-                        whileInView={{
-                            opacity: 1,
-                            y: 0,
-                        }}
-                        viewport={{
-                            once: true,
-                        }}
-                        transition={{
-                            delay: index * 0.2,
-                            duration: 0.5,
-                        }}
-                        whileHover={{
-                            y: -10,
-                        }}
-                        className="group relative bg-[#1A1F2E] p-8 rounded-xl border border-gray-800 hover:border-[#FDB913]/50 transition-colors"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: index * 0.1 }}
+                        onClick={onServiceClick}
+                        className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-all cursor-pointer border border-gray-100 hover:border-[#FDB913]"
                     >
-                        <div
-                            className={`w-14 h-14 rounded-lg ${service.color} flex items-center justify-center mb-6 text-white shadow-lg group-hover:scale-110 transition-transform duration-300`}
-                        >
-                            <service.icon className="w-7 h-7" />
-                        </div>
-
-                        <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-[#FDB913] transition-colors">
-                            {service.title}
+                        <h3 className="text-xl font-bold text-[#0A1628] mb-6 pb-4 border-b border-gray-100">
+                            {category.title}
                         </h3>
-
-                        <p className="text-gray-400 mb-8 leading-relaxed">
-                            {service.description}
-                        </p>
-
-                        <div className="flex items-center text-sm font-bold text-white group-hover:text-[#FDB913] transition-colors cursor-pointer">
-                            <span>Learn more</span>
-                            <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                        </div>
-
-                        {/* Hover Gradient */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-xl pointer-events-none" />
+                        <ul className="space-y-3">
+                            {category.items.map((item, idx) => (
+                                <li key={idx} className="flex items-center text-gray-600">
+                                    <CheckCircle2 className="w-4 h-4 text-[#FDB913] mr-3 flex-shrink-0" />
+                                    <span className="text-sm font-medium">{item}</span>
+                                </li>
+                            ))}
+                        </ul>
                     </motion.div>
                 ))}
             </div>

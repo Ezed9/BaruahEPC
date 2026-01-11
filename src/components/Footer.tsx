@@ -44,11 +44,11 @@ export function Footer() {
                     <div>
                         <h4 className="text-lg font-bold mb-6 text-white">Quick Links</h4>
                         <ul className="space-y-4">
-                            {['About Us', 'Services', 'Projects', 'Careers', 'Contact'].map(
+                            {['Home', 'Services', 'EPC', 'Portfolio', 'Consultation'].map(
                                 (item) => (
                                     <li key={item}>
                                         <a
-                                            href="#"
+                                            href={`#${item.toLowerCase().replace(' ', '-')}`}
                                             className="text-gray-400 hover:text-[#FDB913] transition-colors"
                                         >
                                             {item}
@@ -89,16 +89,17 @@ export function Footer() {
                             <li className="flex items-start space-x-3 text-gray-400">
                                 <MapPin className="w-5 h-5 text-[#FDB913] flex-shrink-0 mt-1" />
                                 <span>
-                                    123 Infrastructure Lane, GS Road, Guwahati, Assam - 781005
+                                    Ganesh Turning, Main Road, Kahilipara, Guwahati - 781019,
+                                    Assam
                                 </span>
                             </li>
                             <li className="flex items-center space-x-3 text-gray-400">
                                 <Phone className="w-5 h-5 text-[#FDB913] flex-shrink-0" />
-                                <span>+91 98765 43210</span>
+                                <span>8811090483</span>
                             </li>
                             <li className="flex items-center space-x-3 text-gray-400">
                                 <Mail className="w-5 h-5 text-[#FDB913] flex-shrink-0" />
-                                <span>contact@baruahepc.com</span>
+                                <span>baruahepc@gmail.com</span>
                             </li>
                         </ul>
                     </div>

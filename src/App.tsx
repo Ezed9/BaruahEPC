@@ -7,6 +7,7 @@ import { Hero } from './components/Hero'
 import { TrustStrip } from './components/TrustStrip'
 import { AboutVision } from './components/AboutVision'
 import { Services } from './components/Services'
+import { EPC } from './components/EPC'
 import { WhyChooseUs } from './components/WhyChooseUs'
 import { ProjectsPreview } from './components/ProjectsPreview'
 import { CTASection } from './components/CTASection'
@@ -50,8 +51,11 @@ export function App() {
             <div id="about">
               <AboutVision />
             </div>
+            <div id="epc">
+              <EPC onLearnMoreClick={() => setIsContactModalOpen(true)} />
+            </div>
             <div id="services">
-              <Services />
+              <Services onServiceClick={() => setIsContactModalOpen(true)} />
             </div>
             <WhyChooseUs />
             <div id="projects">

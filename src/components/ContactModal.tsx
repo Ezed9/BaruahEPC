@@ -150,7 +150,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                                             onChange={handleChange}
                                             required
                                             className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#FDB913] focus:outline-none transition-colors"
-                                            placeholder="+91 98765 43210"
+                                            placeholder="8811090483"
                                         />
                                     </div>
 

@@ -25,20 +25,22 @@ export function AboutVision() {
                     <div className="flex items-center space-x-2 mb-6">
                         <span className="h-1 w-12 bg-[#FDB913]"></span>
                         <span className="text-[#0A1628] font-bold tracking-widest uppercase text-sm">
-                            Our Vision
+                            Our Mission
                         </span>
                     </div>
 
                     <h2 className="text-4xl md:text-5xl font-bold text-[#0A1628] mb-6 leading-tight">
-                        Startup Agility with <br />
-                        <span className="text-[#0EA5E9]">Enterprise Mindset</span>
+                        Our mission is to turn <br />
+                        <span className="text-[#0EA5E9]">ideas into trusted structures.</span>
                     </h2>
 
                     <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                        Baruah EPC and Group was founded on a simple yet powerful premise:
-                        India's infrastructure needs are evolving, and so should its
-                        builders. We combine the speed and innovation of a modern startup
-                        with the rigorous standards of established engineering firms.
+                        At Baruah EPC & Group, our mission is to make every construction
+                        experience seamless, safe, and tailored to your needs. We focus on
+                        delivering high-quality, reliable services that bring satisfaction
+                        and peace of mind — from the comfort of your home. With safety,
+                        quality, and client-first solutions at the core, we transform your
+                        vision into a secure and happy outcome.
                     </p>
 
                     <div className="space-y-4">
@@ -120,9 +122,10 @@ export function AboutVision() {
                             <p className="text-sm text-gray-500 uppercase tracking-wider mb-1">
                                 Target Goal
                             </p>
-                            <p className="text-3xl font-bold text-[#0A1628]">₹500 Cr+</p>
+                            <p className="text-3xl font-bold text-[#0A1628]">100+</p>
                             <p className="text-sm text-gray-600 mt-2">
-                                Project pipeline value aimed for FY 2025-26
+                                Satisfied clients anchored in trust and enduring relationships –
+                                FY 2026-2027
                             </p>
                         </motion.div>
                     </div>
