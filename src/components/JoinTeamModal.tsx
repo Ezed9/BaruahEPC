@@ -2,23 +2,28 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, Send } from 'lucide-react'
 import { Button } from './ui/Button'
-interface ContactModalProps {
+
+interface JoinTeamModalProps {
     isOpen: boolean
     onClose: () => void
 }
-export function ContactModal({ isOpen, onClose }: ContactModalProps) {
+
+export function JoinTeamModal({ isOpen, onClose }: JoinTeamModalProps) {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
         phone: '',
-        state: '',
-        city: '',
-        projectType: '',
+        location: '',
+        role: '',
+        experience: '',
+        organization: '',
+        portfolioLink: '',
         message: '',
     })
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [isSubmitted, setIsSubmitted] = useState(false)
-    // Replace YOUR_FORMSPREE_ID with your actual Formspree form ID
+
+    // Replace YOUR_FORMSPREE_ID with your actual Formspree form ID for job applications
     const FORMSPREE_ID = 'YOUR_FORMSPREE_ID'
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -32,94 +37,70 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    name: formData.name,
-                    email: formData.email,
-                    phone: formData.phone,
-                    state: formData.state,
-                    city: formData.city,
-                    projectType: formData.projectType,
-                    message: formData.message,
+                    formType: 'Job Application',
+                    ...formData,
                 }),
             })
 
             if (response.ok) {
                 setIsSubmitted(true)
-                // Reset after 2 seconds
                 setTimeout(() => {
                     setIsSubmitted(false)
                     setFormData({
                         name: '',
                         email: '',
                         phone: '',
-                        state: '',
-                        city: '',
-                        projectType: '',
+                        location: '',
+                        role: '',
+                        experience: '',
+                        organization: '',
+                        portfolioLink: '',
                         message: '',
                     })
                     onClose()
                 }, 2000)
             } else {
-                alert('Failed to send message. Please try again.')
+                alert('Failed to send application. Please try again.')
             }
         } catch (error) {
             console.error('Form submission error:', error)
-            alert('Failed to send message. Please try again.')
+            alert('Failed to send application. Please try again.')
         } finally {
             setIsSubmitting(false)
         }
     }
+
     const handleChange = (
-        e: React.ChangeEvent<
-            HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-        >,
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
     ) => {
         setFormData((prev) => ({
             ...prev,
             [e.target.name]: e.target.value,
         }))
     }
+
     return (
         <AnimatePresence>
             {isOpen && (
                 <>
                     {/* Backdrop */}
                     <motion.div
-                        initial={{
-                            opacity: 0,
-                        }}
-                        animate={{
-                            opacity: 1,
-                        }}
-                        exit={{
-                            opacity: 0,
-                        }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
                         onClick={onClose}
                         className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50"
                     />
 
                     {/* Modal */}
                     <motion.div
-                        initial={{
-                            opacity: 0,
-                            scale: 0.95,
-                            y: 20,
-                        }}
-                        animate={{
-                            opacity: 1,
-                            scale: 1,
-                            y: 0,
-                        }}
-                        exit={{
-                            opacity: 0,
-                            scale: 0.95,
-                            y: 20,
-                        }}
-                        transition={{
-                            duration: 0.3,
-                        }}
+                        initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                        transition={{ duration: 0.3 }}
                         className="fixed inset-0 z-50 flex items-center justify-center p-4"
                     >
-                        <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+                        <div className="bg-white rounded-2xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
                             {/* Header */}
                             <div className="bg-[#0A1628] p-6 rounded-t-2xl relative">
                                 <button
@@ -129,10 +110,10 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                                     <X className="w-6 h-6" />
                                 </button>
                                 <h2 className="text-3xl font-bold text-white mb-2">
-                                    Get a Project Quote
+                                    Join Our Team
                                 </h2>
                                 <p className="text-gray-400">
-                                    Tell us about your infrastructure needs
+                                    We're always looking for passionate people to build with us.
                                 </p>
                             </div>
 
@@ -150,7 +131,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                                             onChange={handleChange}
                                             required
                                             className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#FDB913] focus:outline-none transition-colors"
-                                            placeholder="John Doe"
+                                            placeholder="Your full name"
                                         />
                                     </div>
 
@@ -165,7 +146,7 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                                             onChange={handleChange}
                                             required
                                             className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#FDB913] focus:outline-none transition-colors"
-                                            placeholder="john@company.com"
+                                            placeholder="your@email.com"
                                         />
                                     </div>
 
@@ -180,53 +161,67 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                                             onChange={handleChange}
                                             required
                                             className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#FDB913] focus:outline-none transition-colors"
-                                            placeholder="8811090483"
+                                            placeholder="Your contact number"
                                         />
                                     </div>
 
                                     <div>
                                         <label className="block text-sm font-bold text-[#0A1628] mb-2 uppercase tracking-wider">
-                                            State *
+                                            Current Location *
+                                        </label>
+                                        <input
+                                            type="text"
+                                            name="location"
+                                            value={formData.location}
+                                            onChange={handleChange}
+                                            required
+                                            className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#FDB913] focus:outline-none transition-colors"
+                                            placeholder="City, State"
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-sm font-bold text-[#0A1628] mb-2 uppercase tracking-wider">
+                                            Role You're Applying For *
                                         </label>
                                         <select
-                                            name="state"
-                                            value={formData.state}
+                                            name="role"
+                                            value={formData.role}
                                             onChange={handleChange}
                                             required
                                             className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#FDB913] focus:outline-none transition-colors"
                                         >
-                                            <option value="">Select State</option>
-                                            <option value="Andhra Pradesh">Andhra Pradesh</option>
-                                            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-                                            <option value="Assam">Assam</option>
-                                            <option value="Bihar">Bihar</option>
-                                            <option value="Chhattisgarh">Chhattisgarh</option>
-                                            <option value="Goa">Goa</option>
-                                            <option value="Gujarat">Gujarat</option>
-                                            <option value="Haryana">Haryana</option>
-                                            <option value="Himachal Pradesh">Himachal Pradesh</option>
-                                            <option value="Jharkhand">Jharkhand</option>
-                                            <option value="Karnataka">Karnataka</option>
-                                            <option value="Kerala">Kerala</option>
-                                            <option value="Madhya Pradesh">Madhya Pradesh</option>
-                                            <option value="Maharashtra">Maharashtra</option>
-                                            <option value="Manipur">Manipur</option>
-                                            <option value="Meghalaya">Meghalaya</option>
-                                            <option value="Mizoram">Mizoram</option>
-                                            <option value="Nagaland">Nagaland</option>
-                                            <option value="Odisha">Odisha</option>
-                                            <option value="Punjab">Punjab</option>
-                                            <option value="Rajasthan">Rajasthan</option>
-                                            <option value="Sikkim">Sikkim</option>
-                                            <option value="Tamil Nadu">Tamil Nadu</option>
-                                            <option value="Telangana">Telangana</option>
-                                            <option value="Tripura">Tripura</option>
-                                            <option value="Uttar Pradesh">Uttar Pradesh</option>
-                                            <option value="Uttarakhand">Uttarakhand</option>
-                                            <option value="West Bengal">West Bengal</option>
-                                            <option value="Delhi">Delhi</option>
-                                            <option value="Chandigarh">Chandigarh</option>
-                                            <option value="Puducherry">Puducherry</option>
+                                            <option value="">Select role</option>
+                                            <option value="Architect / Junior Architect">Architect / Junior Architect</option>
+                                            <option value="Site Engineer">Site Engineer</option>
+                                            <option value="Interior Designer">Interior Designer</option>
+                                            <option value="Civil Supervisor">Civil Supervisor</option>
+                                            <option value="Quantity Surveyor">Quantity Surveyor</option>
+                                            <option value="Project Coordinator">Project Coordinator</option>
+                                            <option value="Procurement / Materials">Procurement / Materials</option>
+                                            <option value="Intern / Trainee">Intern / Trainee</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-sm font-bold text-[#0A1628] mb-2 uppercase tracking-wider">
+                                            Experience Level *
+                                        </label>
+                                        <select
+                                            name="experience"
+                                            value={formData.experience}
+                                            onChange={handleChange}
+                                            required
+                                            className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#FDB913] focus:outline-none transition-colors"
+                                        >
+                                            <option value="">Select experience level</option>
+                                            <option value="Fresher">Fresher</option>
+                                            <option value="0-1 years">0-1 years</option>
+                                            <option value="1-3 years">1-3 years</option>
+                                            <option value="3-5 years">3-5 years</option>
+                                            <option value="5-10 years">5-10 years</option>
+                                            <option value="10+ years">10+ years</option>
                                         </select>
                                     </div>
                                 </div>
@@ -234,43 +229,36 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div>
                                         <label className="block text-sm font-bold text-[#0A1628] mb-2 uppercase tracking-wider">
-                                            City *
+                                            Current Organization / College
                                         </label>
                                         <input
                                             type="text"
-                                            name="city"
-                                            value={formData.city}
+                                            name="organization"
+                                            value={formData.organization}
                                             onChange={handleChange}
-                                            required
                                             className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#FDB913] focus:outline-none transition-colors"
-                                            placeholder="Enter your city"
+                                            placeholder="Company or institution name"
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-sm font-bold text-[#0A1628] mb-2 uppercase tracking-wider">
+                                            Portfolio / Resume Link
+                                        </label>
+                                        <input
+                                            type="url"
+                                            name="portfolioLink"
+                                            value={formData.portfolioLink}
+                                            onChange={handleChange}
+                                            className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#FDB913] focus:outline-none transition-colors"
+                                            placeholder="Google Drive / Dropbox / Portfolio website link"
                                         />
                                     </div>
                                 </div>
 
                                 <div>
                                     <label className="block text-sm font-bold text-[#0A1628] mb-2 uppercase tracking-wider">
-                                        Project Type *
-                                    </label>
-                                    <select
-                                        name="projectType"
-                                        value={formData.projectType}
-                                        onChange={handleChange}
-                                        required
-                                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#FDB913] focus:outline-none transition-colors"
-                                    >
-                                        <option value="">Select service type</option>
-                                        <option value="construction">Construction Services (Interior, Plumbing, Electrical, Contracting)</option>
-                                        <option value="procurement">Procurement Services (Material Sourcing, Fixtures, Fittings)</option>
-                                        <option value="design">Design & Consultancy (Architectural, Interior Design, Planning)</option>
-                                        <option value="labor">Labor & Workforce (Skilled Labor, Project Management)</option>
-                                        <option value="custom">Custom Solutions (Unique Needs, Special Requests)</option>
-                                    </select>
-                                </div>
-
-                                <div>
-                                    <label className="block text-sm font-bold text-[#0A1628] mb-2 uppercase tracking-wider">
-                                        Project Details *
+                                        Why Do You Want to Join Us? *
                                     </label>
                                     <textarea
                                         name="message"
@@ -279,27 +267,21 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                                         required
                                         rows={4}
                                         className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#FDB913] focus:outline-none transition-colors resize-none"
-                                        placeholder="Tell us about your project requirements, timeline, and budget..."
+                                        placeholder="Tell us briefly about your skills, interests and what excites you about working with Baruah EPC & Group..."
                                     />
                                 </div>
 
                                 {isSubmitted ? (
                                     <motion.div
-                                        initial={{
-                                            opacity: 0,
-                                            scale: 0.9,
-                                        }}
-                                        animate={{
-                                            opacity: 1,
-                                            scale: 1,
-                                        }}
+                                        initial={{ opacity: 0, scale: 0.9 }}
+                                        animate={{ opacity: 1, scale: 1 }}
                                         className="bg-green-50 border-2 border-green-500 rounded-lg p-4 text-center"
                                     >
                                         <p className="text-green-700 font-bold">
-                                            ✓ Message sent successfully!
+                                            ✓ Application sent successfully!
                                         </p>
                                         <p className="text-green-600 text-sm mt-1">
-                                            We'll get back to you within 24 hours.
+                                            We'll review your application and get back to you soon.
                                         </p>
                                     </motion.div>
                                 ) : (
@@ -308,11 +290,9 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
                                         size="lg"
                                         className="w-full"
                                         isLoading={isSubmitting}
-                                        rightIcon={
-                                            !isSubmitting ? <Send className="w-5 h-5" /> : undefined
-                                        }
+                                        rightIcon={!isSubmitting ? <Send className="w-5 h-5" /> : undefined}
                                     >
-                                        {isSubmitting ? 'Sending...' : 'Send Inquiry'}
+                                        {isSubmitting ? 'Sending...' : 'Apply Now'}
                                     </Button>
                                 )}
                             </form>

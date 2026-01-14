@@ -6,9 +6,22 @@ import {
     MapPin,
     Mail,
     Phone,
+    MessageCircle,
 } from 'lucide-react'
 import logo from '../assets/logo.png'
-export function Footer() {
+
+interface FooterProps {
+    onJoinTeamClick: () => void
+}
+
+export function Footer({ onJoinTeamClick }: FooterProps) {
+    const socialLinks = [
+        { Icon: Facebook, href: '#' },
+        { Icon: Twitter, href: '#' },
+        { Icon: Linkedin, href: '#' },
+        { Icon: Instagram, href: 'https://www.instagram.com/baruah.group?igsh=NHVpbzZia2gxbjli' },
+    ]
+
     return (
         <footer className="bg-[#050B14] text-white pt-20 pb-10 border-t border-gray-900">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -23,10 +36,12 @@ export function Footer() {
                             and unwavering reliability.
                         </p>
                         <div className="flex space-x-4">
-                            {[Facebook, Twitter, Linkedin, Instagram].map((Icon, i) => (
+                            {socialLinks.map(({ Icon, href }, i) => (
                                 <a
                                     key={i}
-                                    href="#"
+                                    href={href}
+                                    target={href !== '#' ? '_blank' : undefined}
+                                    rel={href !== '#' ? 'noopener noreferrer' : undefined}
                                     className="text-gray-400 hover:text-[#FDB913] transition-colors"
                                 >
                                     <Icon className="w-5 h-5" />
@@ -51,6 +66,14 @@ export function Footer() {
                                     </li>
                                 ),
                             )}
+                            <li>
+                                <button
+                                    onClick={onJoinTeamClick}
+                                    className="text-gray-400 hover:text-[#FDB913] transition-colors"
+                                >
+                                    Join Our Team
+                                </button>
+                            </li>
                         </ul>
                     </div>
 
@@ -90,7 +113,11 @@ export function Footer() {
                             </li>
                             <li className="flex items-center space-x-3 text-gray-400">
                                 <Phone className="w-5 h-5 text-[#FDB913] flex-shrink-0" />
-                                <span>8811090483</span>
+                                <a href="tel:+918811090483" className="hover:text-[#FDB913] transition-colors">+91 8811090483</a>
+                            </li>
+                            <li className="flex items-center space-x-3 text-gray-400">
+                                <MessageCircle className="w-5 h-5 text-[#25D366] flex-shrink-0" />
+                                <a href="https://wa.me/918486574602" target="_blank" rel="noopener noreferrer" className="hover:text-[#25D366] transition-colors">+91 8486574602 (WhatsApp)</a>
                             </li>
                             <li className="flex items-center space-x-3 text-gray-400">
                                 <Mail className="w-5 h-5 text-[#FDB913] flex-shrink-0" />

@@ -3,6 +3,7 @@ import { AnimatePresence } from 'framer-motion'
 import { Loader } from './components/Loader'
 import { Navigation } from './components/Navigation'
 import { ContactModal } from './components/ContactModal'
+import { JoinTeamModal } from './components/JoinTeamModal'
 import { Hero } from './components/Hero'
 import { TrustStrip } from './components/TrustStrip'
 import { AboutVision } from './components/AboutVision'
@@ -15,6 +16,7 @@ import { Footer } from './components/Footer'
 export function App() {
   const [isLoading, setIsLoading] = useState(true)
   const [isContactModalOpen, setIsContactModalOpen] = useState(false)
+  const [isJoinTeamModalOpen, setIsJoinTeamModalOpen] = useState(false)
   useEffect(() => {
     // Simulate loading time
     const timer = setTimeout(() => {
@@ -42,10 +44,14 @@ export function App() {
             isOpen={isContactModalOpen}
             onClose={() => setIsContactModalOpen(false)}
           />
+          <JoinTeamModal
+            isOpen={isJoinTeamModalOpen}
+            onClose={() => setIsJoinTeamModalOpen(false)}
+          />
 
           <div className="min-h-screen bg-white font-sans text-[#1A1F2E]">
             <div id="home">
-              <Hero onContactClick={() => setIsContactModalOpen(true)} />
+              <Hero onContactClick={() => setIsContactModalOpen(true)} onJoinTeamClick={() => setIsJoinTeamModalOpen(true)} />
             </div>
             <TrustStrip />
             <div id="about">
@@ -64,7 +70,7 @@ export function App() {
             <div id="contact">
               <CTASection onContactClick={() => setIsContactModalOpen(true)} />
             </div>
-            <Footer />
+            <Footer onJoinTeamClick={() => setIsJoinTeamModalOpen(true)} />
           </div>
         </>
       )}

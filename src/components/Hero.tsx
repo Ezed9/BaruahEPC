@@ -1,19 +1,12 @@
 
 import { motion } from 'framer-motion'
-import { ArrowRight, ChevronDown } from 'lucide-react'
+import { ArrowRight, ChevronDown, Users } from 'lucide-react'
 import { Button } from './ui/Button'
 interface HeroProps {
     onContactClick: () => void
+    onJoinTeamClick: () => void
 }
-export function Hero({ onContactClick }: HeroProps) {
-    const scrollToServices = () => {
-        const element = document.querySelector('#services')
-        if (element) {
-            element.scrollIntoView({
-                behavior: 'smooth',
-            })
-        }
-    }
+export function Hero({ onContactClick, onJoinTeamClick }: HeroProps) {
     return (
         <div className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0A1628]">
             {/* Background Image with Overlay */}
@@ -151,8 +144,8 @@ export function Hero({ onContactClick }: HeroProps) {
                         >
                             Get a Consultation
                         </Button>
-                        <Button variant="outline" size="lg" onClick={scrollToServices}>
-                            View Capabilities
+                        <Button variant="outline" size="lg" onClick={onJoinTeamClick} rightIcon={<Users className="w-5 h-5" />}>
+                            Join Our Team
                         </Button>
                     </motion.div>
                 </motion.div>
