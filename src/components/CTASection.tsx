@@ -1,13 +1,17 @@
 
 import { motion } from 'framer-motion'
 import { Button } from './ui/Button'
-import { MessageSquare, Phone } from 'lucide-react'
+import { MessageSquare, Phone, MessageCircle } from 'lucide-react'
 interface CTASectionProps {
     onContactClick: () => void
 }
 export function CTASection({ onContactClick }: CTASectionProps) {
     const handlePhoneClick = () => {
-        window.location.href = 'tel:8811090483'
+        window.location.href = 'tel:+918811090483'
+    }
+
+    const handleWhatsAppClick = () => {
+        window.open('https://wa.me/918486574602', '_blank')
     }
     return (
         <section className="py-24 bg-[#FDB913] relative overflow-hidden">
@@ -43,7 +47,8 @@ export function CTASection({ onContactClick }: CTASectionProps) {
                         </h2>
                         <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto opacity-90">
                             Ready to start your project? Contact us at{' '}
-                            <span className="font-bold">8811090483</span> or{' '}
+                            <span className="font-bold">+91 8811090483</span>,{' '}
+                            <span className="font-bold">+91 8486574602 (WhatsApp)</span> or{' '}
                             <span className="font-bold">baruahepc@gmail.com</span>
                         </p>
                         <p className="text-xl text-[#0A1628]/80 font-medium">
@@ -72,7 +77,7 @@ export function CTASection({ onContactClick }: CTASectionProps) {
                             leftIcon={<MessageSquare className="w-5 h-5" />}
                             onClick={onContactClick}
                         >
-                            Start a Conversation
+                            Get a Quote
                         </Button>
                         <Button
                             variant="outline"
@@ -81,7 +86,16 @@ export function CTASection({ onContactClick }: CTASectionProps) {
                             leftIcon={<Phone className="w-5 h-5" />}
                             onClick={handlePhoneClick}
                         >
-                            8811090483
+                            +91 8811090483
+                        </Button>
+                        <Button
+                            variant="outline"
+                            size="lg"
+                            className="border-[#0A1628] text-[#0A1628] hover:bg-[#0A1628]/10 w-full sm:w-auto"
+                            leftIcon={<MessageCircle className="w-5 h-5" />}
+                            onClick={handleWhatsAppClick}
+                        >
+                            WhatsApp
                         </Button>
                     </motion.div>
                 </div>
