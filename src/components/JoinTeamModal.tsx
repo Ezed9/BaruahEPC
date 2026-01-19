@@ -23,8 +23,8 @@ export function JoinTeamModal({ isOpen, onClose }: JoinTeamModalProps) {
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [isSubmitted, setIsSubmitted] = useState(false)
 
-    // Replace YOUR_FORMSPREE_ID with your actual Formspree form ID for job applications
-    const FORMSPREE_ID = 'YOUR_FORMSPREE_ID'
+    // Formspree Form ID for Job Applications
+    const FORMSPREE_ID = 'mykkwleq'
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()

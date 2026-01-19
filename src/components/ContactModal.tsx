@@ -18,8 +18,8 @@ export function ContactModal({ isOpen, onClose }: ContactModalProps) {
     })
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [isSubmitted, setIsSubmitted] = useState(false)
-    // Replace YOUR_FORMSPREE_ID with your actual Formspree form ID
-    const FORMSPREE_ID = 'YOUR_FORMSPREE_ID'
+    // Formspree Form ID for Quote/Contact requests
+    const FORMSPREE_ID = 'mzddryen'
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
